@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">TestApplication</string>
+
+    <string name="str_device_working_num">设备工作数量</string>
+    <string name="str_total">\n总数量</string>
+    <string name="title_activity_second">SecondActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="btn_jump">点击跳转</string>
+    <string name="btn_result">点击回传</string>
+    <string name="exit_app">退出应用</string>
+    <string name="str_please_wait">请等待</string>
+
+</resources>

@@ -19,7 +19,7 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
-import com.lxm.test.HT;
+import com.lxm.test.MyApplication;
 import com.lxm.test.R;
 import java.util.ArrayList;
 
@@ -205,7 +205,7 @@ public class PieChartManage {
         data.setValueTextColor(Color.WHITE);
         pieChart.setData(data);
         pieChart.setCenterTextSize(12f);
-        pieChart.setCenterText(total + HT.get().getApplication().getString(R.string.str_total));
+        pieChart.setCenterText(total + MyApplication.application.getString(R.string.str_total));
 
         // undo all highlights
         pieChart.highlightValues(null);

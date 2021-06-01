@@ -10,11 +10,9 @@ import androidx.annotation.NonNull;
  *@param<V>
  */
 
-public abstract class BasePresenter<V> {
+abstract class BasePresenter<V>(view : V) {
 
-    protected V view;
+    private var _view : V = view
 
-    public BasePresenter(@NonNull V view) {
-        this.view = view;
-    }
+
 }

@@ -90,13 +90,10 @@ public class RotateCircleProgressBar extends View {
         animator.setDuration(600);
         animator.setRepeatCount(ValueAnimator.INFINITE);
         animator.setRepeatMode(ValueAnimator.RESTART);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                //更新旋转角度
-                mAngle = (Float) animation.getAnimatedValue();
-                postInvalidate();
-            }
+        animator.addUpdateListener(animation -> {
+            //更新旋转角度
+            mAngle = (Float) animation.getAnimatedValue();
+            postInvalidate();
         });
         animator.start();
     }

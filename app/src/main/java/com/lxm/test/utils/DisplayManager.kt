@@ -49,7 +49,7 @@ object DisplayManager {
      * @param size
      * @return
      */
-    fun getPaintSize(size: Int): Int? {
+    fun getPaintSize(size: Int): Int {
         return getRealHeight(size)
     }
 
@@ -59,7 +59,7 @@ object DisplayManager {
      * @param px ui图中的大小
      * @return
      */
-    fun getRealWidth(px: Int): Int? {
+    fun getRealWidth(px: Int): Int {
         //ui图的宽度
         return getRealWidth(px, STANDARD_WIDTH.toFloat())
     }
@@ -71,7 +71,7 @@ object DisplayManager {
      * @param parentWidth 父view在ui图中的高度
      * @return
      */
-    fun getRealWidth(px: Int, parentWidth: Float): Int? {
+    fun getRealWidth(px: Int, parentWidth: Float): Int {
         getScreenWidth()?.let {
             return (px / parentWidth * it).toInt()
         }
@@ -84,7 +84,7 @@ object DisplayManager {
      * @param px ui图中的大小
      * @return
      */
-    fun getRealHeight(px: Int): Int? {
+    fun getRealHeight(px: Int): Int {
         //ui图的宽度
         return getRealHeight(px, STANDARD_HEIGHT.toFloat())
     }
@@ -96,7 +96,7 @@ object DisplayManager {
      * @param parentHeight 父view在ui图中的高度
      * @return
      */
-    fun getRealHeight(px: Int, parentHeight: Float): Int? {
+    fun getRealHeight(px: Int, parentHeight: Float): Int {
         getScreenWidth()?.let {
             return (px / parentHeight * it).toInt()
         }
@@ -108,7 +108,7 @@ object DisplayManager {
      * @param dipValue
      * @return int
      */
-    fun dip2px(dipValue: Int): Int {
+    fun dip2px(dipValue: Double): Int {
         displayMetrics?.density?.let {
             return (dipValue * it + 0.5f).toInt()
         }
@@ -120,7 +120,7 @@ object DisplayManager {
      * @param pxValue
      * @return int
      */
-    fun px2dip(pxValue: Float): Int? {
+    fun px2dip(pxValue: Float): Int {
         displayMetrics?.density?.let {
             return (pxValue / it + 0.5f).toInt()
         }
@@ -132,7 +132,7 @@ object DisplayManager {
      * @param dpValue
      * @return Float
      */
-    fun dp2px(dpValue: Float): Int? {
+    fun dp2px(dpValue: Float): Int {
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
             dpValue,
@@ -146,7 +146,7 @@ object DisplayManager {
      * @param spValue
      * @return Float
      */
-    fun sp2px(spValue: Float): Float? {
+    fun sp2px(spValue: Float): Float {
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_SP,
             spValue,

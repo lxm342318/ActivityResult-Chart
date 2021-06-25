@@ -2,6 +2,7 @@ package com.lxm.test
 
 import android.app.Application
 import android.content.Context
+import com.lxm.test.utils.DisplayManager
 
 /**
  * @author : lxm
@@ -23,5 +24,6 @@ class MyApplication : Application() {
         context = applicationContext
         application = this@MyApplication
         MyAlcImpl.getInstance().bindApplication(this)
+        DisplayManager.init(this)
     }
 }

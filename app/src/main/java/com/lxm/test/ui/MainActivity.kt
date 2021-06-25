@@ -53,9 +53,9 @@ class MainActivity : BaseActivity() {
             list?.add(index, (Math.random()*9+1).toInt())
         }
         if (lineChartManage == null)
-            lineChartManage = LineChartManage(lineChart);
-        lineChart?.visibility = View.VISIBLE;
-        lineChartManage?.showLineChart(list, this)
+            lineChartManage = LineChartManage(lineChart)
+        lineChart?.visibility = View.VISIBLE
+        list?.let { lineChartManage?.showLineChart(it, this) }
     }
 
     @OnClick(R.id.btn_main)

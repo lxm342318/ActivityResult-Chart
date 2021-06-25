@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContract
+import com.lxm.test.NULL_CHARACTER
 import com.lxm.test.ui.SecondActivity
 
 class ActivityContract : ActivityResultContract<String, String>() {
@@ -18,6 +19,6 @@ class ActivityContract : ActivityResultContract<String, String>() {
         val  data  = intent?.getStringExtra("data")
         return if (resultCode == Activity.RESULT_OK && data != null)
             data
-        else ""
+        else NULL_CHARACTER
     }
 }

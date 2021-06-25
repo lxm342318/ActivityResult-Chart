@@ -7,14 +7,13 @@ import android.widget.TextView;
 import com.github.mikephil.charting.charts.PieChart;
 import com.lxm.test.R;
 import com.lxm.test.base.BaseActivity;
-import com.lxm.test.chart.PieChartManage;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import butterknife.BindView;
 import butterknife.OnClick;
+import com.lxm.test.NULL_CHARACTER
+import com.lxm.test.chart.PieChartManage
 import com.lxm.test.utils.ActivityManager
 import com.lxm.test.utils.LogCompat.logI
 import java.lang.Exception
@@ -30,14 +29,14 @@ import kotlin.math.abs
 class SecondActivity : BaseActivity() {
 
     @BindView(R.id.btn_second)
-    private var btnSecond:TextView ? =null
+    private var btnSecond:TextView ? = null
     @BindView(R.id.pie_chart)
     private var  pieChart : PieChart ? = null
     private var  pieChartManage : PieChartManage ? = null
     private var  list : MutableList<Float> = ArrayList()
     private var  sList : MutableList<String> = ArrayList()
     private val  total : Int = 100
-    private var sum : Float =0f
+    private var sum : Float = 0f
 
 
     override fun getLayoutResource(): Int {
@@ -68,7 +67,7 @@ class SecondActivity : BaseActivity() {
       */
     private fun getRandomChar() : String{
 
-        var str = ""
+        var str = NULL_CHARACTER
         val random = Random()
         val heightPos = (176 + abs(random.nextInt(39)))
         val lowPos = (161 + abs(random.nextInt(93)))
@@ -90,7 +89,7 @@ class SecondActivity : BaseActivity() {
     private fun showPieChart( list :MutableList<Float>) {
         if (pieChartManage == null)
             pieChartManage = PieChartManage(pieChart)
-         pieChartManage?.showPicChart(list as ArrayList<Float>?, sList as ArrayList<String>?, total)
+         pieChartManage?.showPicChart(list , sList , total)
 
     }
 

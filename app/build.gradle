@@ -1,8 +1,16 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 def room_version = "2.3.0"
+
+def static buildTime() {
+    def df = new SimpleDateFormat("yyyy_MM_dd_HH_mm")
+    df.setTimeZone(TimeZone.getDefault())
+    return df.format(new Date())
+}
 
 android {
     compileSdkVersion 30
@@ -14,13 +22,22 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
+            minifyEnabled true // 混淆
+            zipAlignEnabled false // Zipalign优化
+            shrinkResources false  // 移除无用的resource文件
+            buildConfigField "boolean", "ISDEBUG", "false"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "ISDEBUG", "true"
         }
     }
 
@@ -32,6 +49,49 @@ android {
     compileOptions{
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    productFlavors {
+        //测试环境
+        jgtest {
+            manifestPlaceholders.put("BUGLY_APP_CHANNEL", "jgtest")
+            flavorDimensions "jgtest"
+            buildConfigField "String", "API_HOST", '"http://124.71.110.82:8066"'
+            buildConfigField "String", "PUSH_HOST", '"http://47.115.127.76:3000"'
+        }
+        //正式环境
+        jg {
+            manifestPlaceholders.put("BUGLY_APP_CHANNEL", "jg")
+            flavorDimensions "jg"
+            buildConfigField "String", "API_HOST", '"http://124.71.110.82:8066"'
+            buildConfigField "String", "PUSH_HOST", '"http://47.115.127.76:3000"'
+        }
+
+    }
+
+    defaultConfig {
+        multiDexEnabled true
+        //armeabi，armeabi-v7a，x86，mips，arm64-v8a，mips64，x86_64
+        ndk { abiFilters 'arm64-v8a', 'armeabi-v7a' }// 其他忽略
+    }
+
+
+}
+
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        outputFileName = "APP-${variant.name}-${variant.versionName}-${variant.versionCode}-${buildTime()}.apk"
+    }
+}
+
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '30.0.0'
+            }
+        }
     }
 }
 

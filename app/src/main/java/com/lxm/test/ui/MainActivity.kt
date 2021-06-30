@@ -49,7 +49,7 @@ class MainActivity : BaseActivity() {
      * @param
      */
     private fun showLineChart() {
-        for (index in 1 until 10){
+        for (index in 0 until 10){
             list?.add(index, (Math.random()*9+1).toInt())
         }
         if (lineChartManage == null)

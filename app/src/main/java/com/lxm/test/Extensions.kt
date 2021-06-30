@@ -50,6 +50,11 @@ fun Bitmap.toBlur(radius : Float, context: Context) : Bitmap {
     return outBitmap
 }
 
+/**
+ * @param tintColor
+ * @param context
+ * @return 针对图标颜色换色
+ */
 @SuppressLint("ResourceType")
 fun ImageView.tint(@ColorInt tintColor : Int, context: Context){
     // 通过mutate()复制加载出来的对象
@@ -65,7 +70,7 @@ fun ImageView.tint(@ColorInt tintColor : Int, context: Context){
 
 /**
  * 字符串非空判断
- * @return
+ * @return  Boolean
  */
 fun CharSequence.isNullEmpty(): Boolean {
     return this.isEmpty() ||  this.toString().compareTo("null",true) == 0

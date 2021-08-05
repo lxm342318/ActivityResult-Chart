@@ -1,17 +1,16 @@
-package com.lxm.test.ui;
+package com.lxm.test.ui
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
-import com.github.mikephil.charting.charts.PieChart;
-import com.lxm.test.R;
-import com.lxm.test.base.BaseActivity;
-
-import java.util.ArrayList;
-import java.util.Random;
-import butterknife.BindView;
-import butterknife.OnClick;
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
+import android.widget.TextView
+import com.github.mikephil.charting.charts.PieChart
+import com.lxm.test.R
+import com.lxm.test.base.BaseActivity
+import java.util.ArrayList
+import java.util.Random
+import butterknife.BindView
+import butterknife.OnClick
 import com.lxm.test.NULL_CHARACTER
 import com.lxm.test.chart.PieChartManage
 import com.lxm.test.utils.ActivityManager

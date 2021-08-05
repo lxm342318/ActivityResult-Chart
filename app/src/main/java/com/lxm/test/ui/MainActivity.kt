@@ -1,21 +1,19 @@
-package com.lxm.test.ui;
+package com.lxm.test.ui
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import com.github.mikephil.charting.charts.LineChart;
-import com.lxm.test.base.BaseActivity;
-import com.lxm.test.chart.LineChartManage;
-import com.lxm.test.contract.ActivityContract;
-import com.lxm.test.R;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.concurrent.CopyOnWriteArrayList;
-import butterknife.BindView;
-import butterknife.OnClick;
+import android.os.Bundle
+import android.view.View
+import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.lifecycle.Observer
+import com.github.mikephil.charting.charts.LineChart
+import com.lxm.test.base.BaseActivity
+import com.lxm.test.chart.LineChartManage
+import com.lxm.test.contract.ActivityContract
+import com.lxm.test.R
+import java.util.concurrent.CopyOnWriteArrayList
+import butterknife.BindView
+import butterknife.OnClick
+import com.lxm.test.utils.ConnectionLiveData
 import com.lxm.test.utils.ToastCompat
 
 class MainActivity : BaseActivity() {
@@ -25,8 +23,9 @@ class MainActivity : BaseActivity() {
     @BindView(R.id.btn_main)
     private var  btnMain :TextView ? = null
     private var  launcher : ActivityResultLauncher<String> ? = null
-    private var  lineChartManage: LineChartManage ? =null
-    private var  list : MutableList<Int>?= null
+    private var  lineChartManage: LineChartManage ? = null
+    private var  list : MutableList<Int> ? = null
+    val connection = ConnectionLiveData(context = this@MainActivity)
 
 
     override fun getLayoutResource(): Int {
@@ -41,6 +40,9 @@ class MainActivity : BaseActivity() {
         launcher = registerForActivityResult(ActivityContract()) {
            ToastCompat.show(it)
         }
+        connection.observe(this, {
+            //todo 网络状态变化
+        })
     }
 
     /**

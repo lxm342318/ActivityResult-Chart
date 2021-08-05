@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.lxm.test.R
+import com.lxm.test.utils.ConnectionLiveData
 import java.lang.Exception
 import kotlin.system.exitProcess
 
@@ -28,7 +29,7 @@ import kotlin.system.exitProcess
   */
 abstract class BaseActivity : AppCompatActivity() , DialogInterface.OnKeyListener {
 
-    private var unBinder : Unbinder ? =null
+    private var unBinder : Unbinder ? = null
     private var  exitTime : Long = 0
     protected val  page : Int = 1
     protected val limit : Int = 20
@@ -82,6 +83,8 @@ abstract class BaseActivity : AppCompatActivity() , DialogInterface.OnKeyListene
      * @return true绑定EventBus事件分发，默认不绑定，子类需要绑定的话复写此方法返回true.
      */
     open  fun isRegisterEventBus() : Boolean = false
+
+
 
     open fun openActivity(cls: Class<*>) {
         openActivity(cls, null)

@@ -20,9 +20,7 @@ object ToastCompat {
     fun show(content: String, duration: Int = Toast.LENGTH_SHORT): Toast? {
         toast?.cancel()
         toast = Toast.makeText(application, content, duration)
-        dp2px(96f)?.let {
-            toast?.setGravity(Gravity.CENTER, 0, it)
-        }
+        toast?.setGravity(Gravity.CENTER, 0, dp2px(96f))
         toast?.show()
         return toast
     }
@@ -30,9 +28,7 @@ object ToastCompat {
     fun show(@StringRes resId: Int, duration: Int = Toast.LENGTH_SHORT): Toast? {
         toast?.cancel()
         toast = Toast.makeText(application, application.resources.getText(resId), duration)
-        dp2px(96f)?.let {
-            toast?.setGravity(Gravity.CENTER, 0, it)
-        }
+        toast?.setGravity(Gravity.CENTER, 0, dp2px(96f))
         toast?.show()
         return toast
     }

@@ -20,12 +20,20 @@ android {
     buildToolsVersion = ProjectProperties.buildVersion
 
     defaultConfig {
+        multiDexEnabled =  true
         applicationId = ProjectProperties.applicationId
         minSdk  = ProjectProperties.minSdk
         targetSdk = ProjectProperties.targetSdk
         versionCode =  ProjectProperties.versionCode
         versionName =  ProjectProperties.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        //armeabi，armeabi-v7a，x86，mips，arm64-v8a，mips64，x86_64
+        ndk {
+            //不配置则默认构建并打包所有可用的ABI
+            //same with gradle-> abiFilters 'x86_64','armeabi-v7a','arm64-v8a'
+            abiFilters.addAll(arrayListOf("x86_64", "armeabi-v7a", "arm64-v8a"))
+        }
     }
 
     buildTypes {
@@ -75,10 +83,9 @@ android {
         }
     }
 
-    defaultConfig {
-        multiDexEnabled =  true
-        //armeabi，armeabi-v7a，x86，mips，arm64-v8a，mips64，x86_64
-        ndk {  abiFilters  }// 其他忽略
+    base {
+        //打包名称示例：BuildSrc(1.2)-release.apk
+        archivesBaseName = "BuildSrc(${ProjectProperties.versionName})"
     }
 }
 

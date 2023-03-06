@@ -4,7 +4,6 @@
 
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
 
@@ -16,12 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
 
-
-        <activity
-            android:name="com.lxm.test.ui.SecondActivity"
-            android:label="@string/title_activity_second">
-        </activity>
-        <activity android:name="com.lxm.test.ui.MainActivity">
+        <activity android:name=".ui.MainActivity"
+            android:exported="true">
             <intent-filter>
 
                 <action android:name="android.intent.action.VIEW" />

@@ -12,17 +12,8 @@ import com.lxm.test.utils.DisplayManager
  */
 class MyApplication : Application() {
 
-    companion object{
-
-        lateinit var context: Context
-        lateinit var application: Application
-
-    }
-
     override fun onCreate() {
         super.onCreate()
-        context = applicationContext
-        application = this@MyApplication
         MyAlcImpl.getInstance().bindApplication(this)
         DisplayManager.init(this)
     }

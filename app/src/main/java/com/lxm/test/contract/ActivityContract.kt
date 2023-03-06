@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContract
 import com.lxm.test.NULL_CHARACTER
-import com.lxm.test.ui.SecondActivity
 
 class ActivityContract : ActivityResultContract<String, String>() {
 

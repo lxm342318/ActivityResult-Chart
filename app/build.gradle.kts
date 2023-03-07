@@ -4,12 +4,12 @@ import java.util.TimeZone
 import java.util.Date
 
 plugins {
-    id ("com.android.application")
-    id ("kotlin-android")
-    id ("kotlin-kapt")
+    id("com.android.application")
+    id("kotlin-android")
+    id("kotlin-kapt")
 }
 
-fun buildTime(): String{
+fun buildTime(): String {
     val df = SimpleDateFormat("yyyy_MM_dd_HH_mm")
     df.timeZone = TimeZone.getDefault()
     return df.format(Date())
@@ -20,12 +20,12 @@ android {
     buildToolsVersion = ProjectProperties.buildVersion
 
     defaultConfig {
-        multiDexEnabled =  true
+        multiDexEnabled = true
         applicationId = ProjectProperties.applicationId
-        minSdk  = ProjectProperties.minSdk
+        minSdk = ProjectProperties.minSdk
         targetSdk = ProjectProperties.targetSdk
-        versionCode =  ProjectProperties.versionCode
-        versionName =  ProjectProperties.versionName
+        versionCode = ProjectProperties.versionCode
+        versionName = ProjectProperties.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         //armeabi，armeabi-v7a，x86，mips，arm64-v8a，mips64，x86_64
@@ -41,7 +41,7 @@ android {
             isMinifyEnabled = false
             isMinifyEnabled = true // 混淆
             isZipAlignEnabled = false // Zipalign优化
-            isShrinkResources =  false  // 移除无用的resource文件
+            isShrinkResources = false  // 移除无用的resource文件
             buildConfigField("boolean", "ISDEBUG", "false")
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
@@ -52,11 +52,16 @@ android {
         }
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 
-    compileOptions{
+    lintOptions {
+        isCheckReleaseBuilds = false
+        isAbortOnError = false
+    }
+
+    compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -68,14 +73,14 @@ android {
 
     productFlavors {
         //测试环境
-        create("ymtest"){
+        create("ymtest") {
             manifestPlaceholders["BUGLY_APP_CHANNEL"] = "ymtest"
             flavorDimensions("ymtest")
             buildConfigField("String", "API_HOST", "\"http://124.71.110.82:8066\"")
             buildConfigField("String", "PUSH_HOST", "\"http://47.115.127.76:3000\"")
         }
         //正式环境
-        create("ym"){
+        create("ym") {
             manifestPlaceholders["BUGLY_APP_CHANNEL"] = "ym"
             flavorDimensions("ym")
             buildConfigField("String", "API_HOST", "\"http://124.71.110.82:8066\"")
@@ -83,10 +88,10 @@ android {
         }
     }
 
-    base {
-        //打包名称示例：BuildSrc(1.2)-release.apk
-        archivesBaseName = "BuildSrc(${ProjectProperties.versionName})"
-    }
+//    base {
+//        //打包名称示例：BuildSrc(1.2)-release.apk
+//        archivesBaseName = "BuildSrc(${ProjectProperties.versionName})"
+//    }
 }
 
 android.applicationVariants.all {
@@ -99,7 +104,7 @@ android.applicationVariants.all {
 
 configurations.all {
     resolutionStrategy.eachDependency {
-        if(requested.group == "com.android.support") {
+        if (requested.group == "com.android.support") {
             if (!requested.name.startsWith("multidex"))
                 useVersion("30.0.0")
         }

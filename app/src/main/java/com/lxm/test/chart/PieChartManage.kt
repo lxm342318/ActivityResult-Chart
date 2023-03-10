@@ -19,6 +19,7 @@ import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
+import com.lxm.test.MyAlcImpl
 import com.lxm.test.MyApplication
 import com.lxm.test.R
 import kotlin.collections.ArrayList
@@ -184,7 +185,7 @@ class PieChartManage(pieChart: PieChart?) {
         data.setValueTextColor(Color.WHITE)
         pieChart?.data = data
         pieChart?.setCenterTextSize(12f)
-        pieChart?.centerText = String.format(MyApplication.application.getString(R.string.str_total) , total )
+        pieChart?.centerText = String.format(MyAlcImpl.getApplication().getString(R.string.str_total) , total )
 
         // undo all highlights
         pieChart?.highlightValues(null)

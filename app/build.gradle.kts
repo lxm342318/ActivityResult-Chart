@@ -159,4 +159,6 @@ dependencies {
     //gson
     implementation(Dependencies.gSon)
 
+    implementation(Dependencies.chart)
+
 }

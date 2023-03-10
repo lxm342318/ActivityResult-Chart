@@ -1,5 +1,6 @@
 package com.lxm.test.utils
 
+import com.lxm.test.BuildConfig
 import com.lxm.test.NULL_CHARACTER
 import com.orhanobut.logger.Logger
 
@@ -21,65 +22,65 @@ object LogCompat {
 
     private var printLevel = VERBOSE
 
-    fun Any?.logV() {
+    fun Any?.logV(tag: String = NULL_CHARACTER) {
         if (printLevel <= VERBOSE) {
-            //if (BuildConfig.ISDEBUG)
-            Logger.v(logTag, toString())
+            if (BuildConfig.DEBUG)
+                Logger.t(tag).v(logTag, toString())
         }
     }
 
-    fun Any?.logD() {
+    fun Any?.logD(tag: String = NULL_CHARACTER) {
         if (printLevel <= DEBUG) {
-            //if (BuildConfig.ISDEBUG)
-            Logger.d(logTag, toString())
+            if (BuildConfig.DEBUG)
+                Logger.t(tag).d(logTag, toString())
         }
     }
 
-    fun Any?.logI() {
+    fun Any?.logI(tag: String = NULL_CHARACTER) {
         if (printLevel <= INFO) {
-            //if (BuildConfig.ISDEBUG)
-            Logger.i("${toString()}  $logTag", toString())
+            if (BuildConfig.DEBUG)
+                Logger.t(tag).i("${toString()}  $logTag", toString())
         }
     }
 
-    fun Any?.logW() {
+    fun Any?.logW(tag: String = NULL_CHARACTER) {
         if (printLevel <= WARN) {
-            //if (BuildConfig.ISDEBUG)
-            Logger.w(logTag, toString())
+            if (BuildConfig.DEBUG)
+                Logger.t(tag).w(logTag, toString())
         }
     }
 
-    fun Any?.logW(t: Throwable) {
+    fun Any?.logW(t: Throwable, tag: String = NULL_CHARACTER) {
         if (printLevel <= WARN) {
-            Logger.w(logTag, toString(), t)
+            Logger.t(tag).w(logTag, toString(), t)
         }
     }
 
-    fun Any?.logWRuntimeException(msg: Any = NULL_CHARACTER) {
+    fun Any?.logWRuntimeException(msg: Any = NULL_CHARACTER, tag: String = NULL_CHARACTER) {
         if (printLevel <= WARN) {
-            //if (BuildConfig.ISDEBUG)
-            Logger.w(logTag, msg.toString(), RuntimeException(msg.toString()))
+            if (BuildConfig.DEBUG)
+                Logger.t(tag).w(logTag, msg.toString(), RuntimeException(msg.toString()))
         }
     }
 
-    fun Any?.logE() {
+    fun Any?.logE(tag: String = NULL_CHARACTER) {
         if (printLevel <= ERROR) {
-            //if (BuildConfig.ISDEBUG)
-            Logger.e("${toString()}  $logTag", toString())
+            if (BuildConfig.DEBUG)
+                Logger.t(tag).e("${toString()}  $logTag", toString())
         }
     }
 
-    fun Any?.logE(t: Throwable) {
+    fun Any?.logE(t: Throwable, tag: String = NULL_CHARACTER) {
         if (printLevel <= ERROR) {
-            //if (BuildConfig.ISDEBUG)
-            Logger.e(logTag, toString(), t)
+            if (BuildConfig.DEBUG)
+                Logger.t(tag).e(logTag, toString(), t)
         }
     }
 
-    fun Any?.logERuntimeException(msg: Any = NULL_CHARACTER) {
+    fun Any?.logERuntimeException(msg: Any = NULL_CHARACTER, tag: String = NULL_CHARACTER) {
         if (printLevel <= ERROR) {
-            //if (BuildConfig.ISDEBUG)
-            Logger.e(logTag, msg.toString(), RuntimeException(msg.toString()))
+            if (BuildConfig.DEBUG)
+                Logger.t(tag).e(logTag, msg.toString(), RuntimeException(msg.toString()))
         }
     }
 
@@ -88,6 +89,5 @@ object LogCompat {
             val element = Thread.currentThread().stackTrace[4]
             return "(${element.fileName}:${element.lineNumber}) ${element.methodName}"
         }
-
 
 }

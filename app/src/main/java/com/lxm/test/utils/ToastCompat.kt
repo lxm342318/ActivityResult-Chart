@@ -3,7 +3,7 @@ package com.lxm.test.utils
 import android.view.Gravity
 import android.widget.Toast
 import androidx.annotation.StringRes
-import com.lxm.test.MyApplication.Companion.application
+import com.lxm.test.MyAlcImpl
 import com.lxm.test.utils.DisplayManager.dp2px
 
 /**
@@ -19,7 +19,7 @@ object ToastCompat {
     @JvmOverloads
     fun show(content: String, duration: Int = Toast.LENGTH_SHORT): Toast? {
         toast?.cancel()
-        toast = Toast.makeText(application, content, duration)
+        toast = Toast.makeText(MyAlcImpl.getApplication(), content, duration)
         toast?.setGravity(Gravity.CENTER, 0, dp2px(96f))
         toast?.show()
         return toast
@@ -27,7 +27,7 @@ object ToastCompat {
 
     fun show(@StringRes resId: Int, duration: Int = Toast.LENGTH_SHORT): Toast? {
         toast?.cancel()
-        toast = Toast.makeText(application, application.resources.getText(resId), duration)
+        toast = Toast.makeText(MyAlcImpl.getApplication(), MyAlcImpl.getApplication().resources.getText(resId), duration)
         toast?.setGravity(Gravity.CENTER, 0, dp2px(96f))
         toast?.show()
         return toast

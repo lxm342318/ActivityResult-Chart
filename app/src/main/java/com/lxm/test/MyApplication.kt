@@ -1,7 +1,6 @@
 package com.lxm.test
 
 import android.app.Application
-import android.content.Context
 import com.lxm.test.utils.DisplayManager
 
 /**
@@ -14,7 +13,7 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        MyAlcImpl.getInstance().bindApplication(this)
+        MyAlcImpl.bindApplication(this)
         DisplayManager.init(this)
     }
 }

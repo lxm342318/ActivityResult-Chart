@@ -13,6 +13,7 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
+import com.lxm.test.MyAlcImpl
 import com.lxm.test.MyApplication
 import com.lxm.test.R
 import java.util.*
@@ -131,7 +132,7 @@ class LineChartManage(lineChart: LineChart?) : OnChartValueSelectedListener {
         set1.lineWidth = 2f
         set1.circleRadius = 3f
         set1.fillAlpha = 65
-        set1.fillColor = ContextCompat.getColor(MyApplication.application, R.color.colorPrimary)
+        set1.fillColor = ContextCompat.getColor(MyAlcImpl.getApplication(), R.color.colorPrimary)
         set1.highLightColor = Color.rgb(244, 117, 117)
         //这点是否绘制圆孔
         set1.setDrawCircleHole(true)

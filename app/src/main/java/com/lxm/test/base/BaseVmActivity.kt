@@ -11,12 +11,12 @@ open class BaseVmActivity : AppCompatActivity(), StatusListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MyAlcImpl.getInstance().addStatusListener(this)
+        MyAlcImpl.addStatusChangedListener(this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        MyAlcImpl.getInstance().removeStatusListener(this)
+        MyAlcImpl.removeStatusChangedListener(this)
     }
 
     override fun onForeground(activity: Activity?) {
